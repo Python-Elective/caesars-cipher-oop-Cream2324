@@ -220,7 +220,6 @@ class PlaintextMessage(Message):
         Returns: a COPY of self.encrypting_dict
         '''
         #pass #delete this line and replace with your code here
- 
         #just use .copy()
         return self.encrypting_dict.copy()
  
@@ -230,7 +229,6 @@ class PlaintextMessage(Message):
         Returns: self.message_text_encrypted
         '''
         #pass #delete this line and replace with your code here
- 
         return self.message_text_encrypted
  
     def change_shift(self, shift):
@@ -259,85 +257,53 @@ class CiphertextMessage(Message):
         '''
         Initializes a CiphertextMessage object
         text (string): the message's text
- 
         a CiphertextMessage object has two attributes:
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
         #pass #delete this line and replace with your code here
- 
         super().__init__(text)
-[Thursday 10:13] Pichayapa (Pitta) Thepchanakul
+
 def decrypt_message(self):
 
         '''
-
         Decrypt self.message_text by trying every possible shift value
-
         and find the "best" one. We will define "best" as the shift that
-
         creates the maximum number of real words when we use apply_shift(shift)
-
         on the message text. If s is the original shift value used to encrypt
-
         the message, then we would expect 26 - s to be the best shift value 
-
         for decrypting it.
- 
         Note: if multiple shifts are  equally good such that they all create 
-
         the maximum number of you may choose any of those shifts (and their
-
         corresponding decrypted messages) to return
- 
         Returns: a tuple of the best shift value used to decrypt the message
-
         and the decrypted message text using that shift value
-
         #brute-force method = trying every possible combination
-
         # PIN 4-digit: try all combination from 0000 up to 9999
- 
         '''
- 
         # common_words = ["I", "you", "we", "and", "but", "the"]
  
         # try apply_shift(1)
-
         #     count how many english words you found
-
         # try apply_shift(2)
-
         #     count how many english words you found
-
         # try apply_shift(3)
-
         #     count how many english words you found
- 
         # the highest word count is the correct shift
-
         # return(best_shift, message)
 
         max_word_count = 0
-
         best_shift = 0
-
         decrypted_message = ''
  
         for shift in range(26):
-
             decrypted_text = self.apply_shift(shift)
-
             word_count = sum(is_word(self.valid_words, word) for word in decrypted_text.split())
 
             if word_count > max_word_count:
-
                 max_word_count = word_count
-
                 best_shift = shift
-
                 decrypted_message = decrypted_text
- 
         return best_shift, decrypted_message
 
        # pass #delete this line and replace with your code here
