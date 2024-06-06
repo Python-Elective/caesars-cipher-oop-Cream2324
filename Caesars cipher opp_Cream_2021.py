@@ -41,6 +41,7 @@ def is_word(word_list, word):
     return word in word_list
  
 ### DO NOT MODIFY THIS FUNCTION ###
+
 def get_story_string():
     """
     Returns: a joke in encrypted text.
@@ -81,6 +82,8 @@ class Message(object):
         Returns: a COPY of self.valid_words
         '''
         return self.valid_words[:]
+    
+    #paet 1
     def build_shift_dict(self, shift):
         '''
         Creates a dictionary that can be used to apply a cipher to a letter.
@@ -181,6 +184,8 @@ print(d)
 shifted_text = m.apply_shift(3)
 print(shifted_text) #kdSSb !!!!
  
+
+ #part 2
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
         '''
@@ -244,75 +249,73 @@ class PlaintextMessage(Message):
         self.shift = shift
         self.encrypting_dict = self.build_shift_dict(shift)
         self.message_text_encrypted = self.apply_shift(shift)
-# test case for p2
+# test case for Problem 2
 p = PlaintextMessage('Happy ???', 3)
 p.change_shift(3)
 print(p.get_message_text())
 p.change_shift(4)
 print(p.get_message_text())
  
+#  #paet 3
+# class CiphertextMessage(Message):
+#     def __init__(self, text):
+#         '''
+#         Initializes a CiphertextMessage object
+#         text (string): the message's text
+#         a CiphertextMessage object has two attributes:
+#             self.message_text (string, determined by input text)
+#             self.valid_words (list, determined using helper function load_words)
+#         '''
+#         #pass #delete this line and replace with your code here
+#         super().__init__(text)
+
+# def decrypt_message(self):
+
+#         '''
+#         Decrypt self.message_text by trying every possible shift value
+#         and find the "best" one. We will define "best" as the shift that
+#         creates the maximum number of real words when we use apply_shift(shift)
+#         on the message text. If s is the original shift value used to encrypt
+#         the message, then we would expect 26 - s to be the best shift value 
+#         for decrypting it.
+#         Note: if multiple shifts are  equally good such that they all create 
+#         the maximum number of you may choose any of those shifts (and their
+#         corresponding decrypted messages) to return
+#         Returns: a tuple of the best shift value used to decrypt the message
+#         and the decrypted message text using that shift value
+#         #brute-force method = trying every possible combination
+#         # PIN 4-digit: try all combination from 0000 up to 9999
+#         '''
+#         # common_words = ["I", "you", "we", "and", "but", "the"]
  
-class CiphertextMessage(Message):
-    def __init__(self, text):
-        '''
-        Initializes a CiphertextMessage object
-        text (string): the message's text
-        a CiphertextMessage object has two attributes:
-            self.message_text (string, determined by input text)
-            self.valid_words (list, determined using helper function load_words)
-        '''
-        #pass #delete this line and replace with your code here
-        super().__init__(text)
+#         # try apply_shift(1)
+#         #     count how many english words you found
+#         # try apply_shift(2)
+#         #     count how many english words you found
+#         # try apply_shift(3)
+#         #     count how many english words you found
+#         # the highest word count is the correct shift
+#         # return(best_shift, message)
 
-def decrypt_message(self):
-
-        '''
-        Decrypt self.message_text by trying every possible shift value
-        and find the "best" one. We will define "best" as the shift that
-        creates the maximum number of real words when we use apply_shift(shift)
-        on the message text. If s is the original shift value used to encrypt
-        the message, then we would expect 26 - s to be the best shift value 
-        for decrypting it.
-        Note: if multiple shifts are  equally good such that they all create 
-        the maximum number of you may choose any of those shifts (and their
-        corresponding decrypted messages) to return
-        Returns: a tuple of the best shift value used to decrypt the message
-        and the decrypted message text using that shift value
-        #brute-force method = trying every possible combination
-        # PIN 4-digit: try all combination from 0000 up to 9999
-        '''
-        # common_words = ["I", "you", "we", "and", "but", "the"]
+#         max_word_count = 0
+#         best_shift = 0
+#         decrypted_message = ''
  
-        # try apply_shift(1)
-        #     count how many english words you found
-        # try apply_shift(2)
-        #     count how many english words you found
-        # try apply_shift(3)
-        #     count how many english words you found
-        # the highest word count is the correct shift
-        # return(best_shift, message)
+#         for shift in range(26):
+#             decrypted_text = self.apply_shift(shift)
+#             word_count = sum(is_word(self.valid_words, word) for word in decrypted_text.split())
 
-        max_word_count = 0
-        best_shift = 0
-        decrypted_message = ''
- 
-        for shift in range(26):
-            decrypted_text = self.apply_shift(shift)
-            word_count = sum(is_word(self.valid_words, word) for word in decrypted_text.split())
+#             if word_count > max_word_count:
+#                 max_word_count = word_count
+#                 best_shift = shift
+#                 decrypted_message = decrypted_text
+#         return best_shift, decrypted_message
 
-            if word_count > max_word_count:
-                max_word_count = word_count
-                best_shift = shift
-                decrypted_message = decrypted_text
-        return best_shift, decrypted_message
-
-       # pass #delete this line and replace with your code here
+#        # pass #delete this line and replace with your code here
  
  
-if __name__ == '__main__':
+# if __name__ == '__main__':
 
-    s = get_story_string()
-
-    ciphertext = CiphertextMessage(s)
-
-    print(ciphertext.decrypt_message())
+#     s = get_story_string()
+#     ciphertext = CiphertextMessage(s)
+#     print(ciphertext.decrypt_message())
